@@ -18,7 +18,7 @@ public class BookSender {
     @Autowired
     private KafkaTemplate<String, String> booksTemplate;
 
-    @Scheduled(initialDelay = 1000, fixedDelay = 15000)
+    @Scheduled(initialDelay = 1000, fixedDelay = 5000)
     public void sendBooks() throws IOException {
         log.info("Sending book in XML format");
         booksTemplate.send(
