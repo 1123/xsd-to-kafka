@@ -1,3 +1,5 @@
+package org.example.kafkastreams.xmltoavro;
+
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;

@@ -1,3 +1,5 @@
+package org.example.kafkastreams.xmltoavro;
+
 import books.BooksForm;
 import books.ObjectFactory;
 
