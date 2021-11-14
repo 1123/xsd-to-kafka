@@ -1,3 +1,5 @@
 target
 .idea
 *.iml
+src/main/resources/kafkastreams-ccloud.properties
+src/main/resources/application-ccloud.yaml
