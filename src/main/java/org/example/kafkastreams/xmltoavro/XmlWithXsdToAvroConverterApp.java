@@ -2,6 +2,7 @@ package org.example.kafkastreams.xmltoavro;
 
 import books.BooksForm;
 import io.confluent.kafka.streams.serdes.avro.ReflectionAvroSerde;
+import io.confluent.kafka.streams.serdes.json.KafkaJsonSchemaSerde;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
@@ -16,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -72,6 +74,9 @@ public class XmlWithXsdToAvroConverterApp {
 		Serde<BooksForm> reflectionAvroSerde = new ReflectionAvroSerde<>();
 		reflectionAvroSerde.configure(schemaRegistryConfig(), false);
 		bookStream.to("books-avro", Produced.with(Serdes.String(), reflectionAvroSerde));
+		Serde<BooksForm> jsonSchemaSerde = new KafkaJsonSchemaSerde<>();
+		jsonSchemaSerde.configure(schemaRegistryConfig(), false);
+		bookStream.to("books-json-schema", Produced.with(Serdes.String(),jsonSchemaSerde));
 		var topology = streamsBuilder.build();
 		KafkaStreams kafkaStreams = new KafkaStreams(topology, kafkaStreamsProperties);
 		kafkaStreams.start();
