@@ -1,7 +1,6 @@
 package org.example.kafkastreams.xmltoavro;
 
 import books.BooksForm;
-import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.ReflectionAvroSerde;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serde;
@@ -55,9 +54,9 @@ public class XmlWithXsdToAvroConverterApp {
 
 	private Map<String, String> schemaRegistryConfig() {
 		Map<String, String> schemaRegistryconfig = new HashMap<>();
-		schemaRegistryconfig.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
-		schemaRegistryconfig.put(AbstractKafkaSchemaSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "USER_INFO");
-		schemaRegistryconfig.put(AbstractKafkaSchemaSerDeConfig.USER_INFO_CONFIG, schemaRegistryUserInfo);
+		schemaRegistryconfig.put("schema.registry.url", schemaRegistryUrl);
+		schemaRegistryconfig.put("basic.auth.credentials.source", "USER_INFO");
+		schemaRegistryconfig.put("basic.auth.user.info", schemaRegistryUserInfo);
 		return schemaRegistryconfig;
 	}
 
