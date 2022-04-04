@@ -6,3 +6,6 @@ spring:
       security:
         protocol: PLAINTEXT
 
+
+schema.registry.url: http://localhost:8081
+schema.registry.user_info: "foo:bar"
